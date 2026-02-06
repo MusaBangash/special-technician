@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Special Technician – Professional HVAC maintenance, repair &amp; installation in Jazan, Saudi Arabia"/>
+<title>Special Technician – الفني المتميز</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script><script type="module">
+  // Import Firebase modules
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+  import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+  import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js';
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyC46KJhoDeYhPlqP_7Ga3_u6axekg5VsBg",
+  authDomain: "special-technician.firebaseapp.com",
+  projectId: "special-technician",
+  storageBucket: "special-technician.firebasestorage.app",
+  messagingSenderId: "568123941999",
+  appId: "1:568123941999:web:81ea33a9ca927e15d7599a",
+  measurementId: "G-5QZ0VVR35G"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const analytics = getAnalytics(app);
+  window.auth = auth;
+  window.RecaptchaVerifier = RecaptchaVerifier;
+  window.signInWithPhoneNumber = signInWithPhoneNumber;
+</script><style>
+/* Same CSS as before */
+:root {
+  --clr-bg:        #f7f6f3;
+  --clr-surface:  #ffffff;
+  --clr-text:     #1a1a1a;
+  --clr-text-mid: #5a5a5a;
+  --clr-text-lo:  #8c8c8c;
+  --clr-accent:   #d4a017;
+  --clr-accent2:  #2e7d32;
+  --clr-accent3:  #c62828;
+  --clr-dark:     #1e1e1e;
+  --clr-wa:       #25d366;
+  --shadow-sm:    0 2px 8px rgba(0,0,0,.06);
+  --shadow-md:    0 6px 24px rgba(0,0,0,.10);
+  --shadow-lg:    0 12px 40px rgba(0,0,0,.14);
+  --radius:       14px;
+  --radius-sm:    8px;
+  --ff-primary:   'Outfit', sans-serif;
+  --ff-arabic:    'Cairo', sans-serif;
+  --transition:   .35s cubic-bezier(.4,0,.2,1);
+}
+
+/* Reset and base styles */
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: var(--ff-primary);
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
+ul { list-style:none; }
+button { font-family:inherit; border:none; cursor:pointer; }
+
+/* Utility */
+.container {
+  width:100%; max-width:1140px;
+  margin-inline:auto; padding-inline:24px;
+}
+.tag {
+  display:inline-block;
+  font-size:.7rem; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase;
+  color: var(--clr-accent);
+  border:1.5px solid var(--clr-accent);
+  border-radius:20px;
+  padding:.3rem .82rem;
+}
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-size:.88rem; font-weight:600;
+  padding:.72rem 1.6rem; border-radius:50px;
+  background: var(--clr-dark); color:#fff;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.btn:hover { transform:translateY(-2px); box-shadow: var(--shadow-md); }
+.btn--accent { background: var(--clr-accent); color:#fff; }
+.btn--outline {
+  background:transparent; color: var(--clr-dark);
+  border:1.8px solid var(--clr-dark);
+}
+.btn--outline:hover { background: var(--clr-dark); color:#fff; }
+
+/* Nav */
+.nav {
+  position:sticky; top:0; z-index:100;
+  background: rgba(247,246,243,.85);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  transition: box-shadow var(--transition);
+}
+.nav.scrolled { box-shadow: var(--shadow-sm); }
+.nav__inner {
+  display:flex; align-items:center; justify-content:space-between;
+  height:68px;
+}
+.nav__logo {
+  display:flex; align-items:center; gap:10px;
+}
+.nav__logo-text {
+  font-size:.92rem; font-weight:700;
+  line-height:1.25; font-family: var(--ff-primary);
+}
+.nav__logo-text span {
+  display:block; font-size:.6rem; font-weight:400;
+  color: var(--clr-text-lo); letter-spacing:.03em;
+  font-family: var(--ff-arabic);
+}
+.nav__links {
+  display:flex; align-items:center; gap:28px;
+}
+.nav__links a {
+  font-size:.82rem; font-weight:500; color: var(--clr-text-mid);
+  position:relative; transition: color var(--transition);
+}
+.nav__links a::after {
+  content:''; position:absolute; left:0; bottom:-4px;
+  width:0; height:2px; background: var(--clr-accent);
+  transition: width var(--transition);
+}
+.nav__links a:hover { color: var(--clr-text); }
+.nav__links a:hover::after { width:100%; }
+.nav__burger { display:none; flex-direction:column; gap:5px; padding:6px; }
+.nav__burger span {
+  width:24px; height:2px; background: var(--clr-text);
+  border-radius:2px; transition:.3s;
+}
+
+/* Stripe */
+.stripe-bar { height:5px; display:flex; }
+.stripe-bar div { flex:1; }
+.stripe-bar div:nth-child(1){ background: var(--clr-accent); }
+.stripe-bar div:nth-child(2){ background: var(--clr-accent2); }
+.stripe-bar div:nth-child(3){ background: var(--clr-accent3); }
+.stripe-bar div:nth-child(4){ background: var(--clr-dark); }
+
+/* Hero */
+.hero {
+  min-height:92vh;
+  display:flex; align-items:center;
+  position:relative; overflow:hidden;
+  background: var(--clr-surface);
+}
+.hero::before {
+  content:''; position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:0;
+}
+.hero__inner {
+  position:relative; z-index:1;
+  display:grid; grid-template-columns:1fr 1fr; gap:48px;
+  align-items:center; width:100%; max-width:1140px;
+  margin-inline:auto; padding-inline:24px;
+  padding-block:80px 100px;
+}
+.hero__content { text-align:left; }
+.hero__badge { margin-bottom:24px; }
+.hero__title {
+  font-size:clamp(2rem, 5.5vw, 3.4rem);
+  font-weight:800; line-height:1.18;
+  color: var(--clr-dark);
+  margin-bottom:20px;
+  font-family: var(--ff-primary);
+}
+.hero__title .highlight { color: var(--clr-accent); }
+.hero__desc {
+  font-size:.97rem; color: var(--clr-text-mid);
+  max-width:440px;
+  margin-bottom:36px; line-height:1.85;
+}
+.hero__actions { display:flex; gap:14px; justify-content:flex-start; flex-wrap:wrap; }
+
+/* Visual */
+.hero__visual {
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+.hero__icon-wrap {
+  width:min(340px, 80vw); height:min(340px, 80vw);
+  border-radius:50%;
+  background: linear-gradient(135deg, #f0ece4 0%, #e8e2d6 100%);
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+  box-shadow: var(--shadow-lg);
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100%{ transform:translateY(0); }
+  50%     { transform:translateY(-14px); }
+}
+.hero__icon-wrap svg { width:55%; height:55%; }
+
+/* Services */
+.services { padding:100px 0 80px; }
+.services__head { text-align:left; margin-bottom:56px; }
+.services__head h2 {
+  font-size:clamp(1.6rem,3.5vw,2.4rem); font-weight:800;
+  margin-top:14px; font-family: var(--ff-primary);
+}
+.services__head p {
+  color: var(--clr-text-mid); font-size:.92rem;
+  margin-top:10px; max-width:440px; line-height:1.75;
+}
+
+.services__tabs {
+  display:flex; gap:10px; justify-content:center;
+  flex-wrap:wrap; margin-bottom:44px;
+}
+.services__tab {
+  font-size:.78rem; font-weight:600;
+  padding:.42rem 1rem; border-radius:20px;
+  background:#fff; color: var(--clr-text-mid);
+  border:1.5px solid rgba(0,0,0,.08);
+  transition: all var(--transition);
+}
+.services__tab:hover,
+.services__tab.active {
+  background: var(--clr-dark); color:#fff; border-color: var(--clr-dark);
+}
+
+.services__grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
+  gap:20px;
+}
+.service-card {
+  background: var(--clr-surface);
+  border-radius: var(--radius);
+  padding:28px 24px;
+  box-shadow: var(--shadow-sm);
+  border:1px solid rgba(0,0,0,.05);
+  transition: transform var(--transition), box-shadow var(--transition);
+  position:relative; overflow:hidden;
+}
+.service-card::before {
+  content:''; position:absolute;
+  top:-40px; right:-40px;
+  width:120px; height:120px; border-radius:50%;
+  background: var(--clr-accent); opacity:.06;
+}
+.service-card:hover { transform:translateY(-4px); box-shadow: var(--shadow-md); }
+.service-card__icon {
+  width:44px; height:44px; border-radius:12px;
+  background: linear-gradient(135deg, var(--clr-accent), #f0c84a);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:16px;
+}
+.service-card__icon svg { width:22px; height:22px; }
+.service-card h3 { font-size:.9rem; font-weight:700; margin-bottom:6px; }
+.service-card p { font-size:.77rem; color: var(--clr-text-lo); margin-bottom:14px; line-height:1.65; }
+.service-card__price {
+  display:flex; align-items:baseline; gap:4px;
+  justify-content:flex-end;
+}
+.service-card__price .amount {
+  font-size:1.3rem; font-weight:800; color: var(--clr-dark);
+  font-family: var(--ff-primary);
+}
+.service-card__price .currency { font-size:.72rem; color: var(--clr-text-lo); }
+
+.services__hidden-note {
+  margin-top:32px; text-align:center;
+  font-size:.74rem; color: var(--clr-text-lo); font-style:italic;
+}
+
+/* Why Us */
+.why { padding:80px 0; background: var(--clr-surface); }
+.why__inner {
+  display:grid; grid-template-columns:1fr 1fr; gap:60px;
+  align-items:center;
+}
+.why__content { text-align:left; }
+.why__content h2 {
+  font-size:clamp(1.5rem,3vw,2.1rem); font-weight:800;
+  margin-top:14px; margin-bottom:20px;
+  font-family: var(--ff-primary);
+}
+.why__list { display:flex; flex-direction:column; gap:18px; }
+.why__item { display:flex; gap:14px; align-items:flex-start; }
+.why__item-icon {
+  flex-shrink:0; width:38px; height:38px;
+  border-radius:10px; background: linear-gradient(135deg,#fff8e1,#fff3c4);
+  display:flex; align-items:center; justify-content:center;
+}
+.why__item-icon svg { width:18px; height:18px; }
+.why__item h4 { font-size:.84rem; font-weight:700; }
+.why__item p { font-size:.75rem; color: var(--clr-text-lo); margin-top:2px; line-height:1.6; }
+
+.why__visual {
+  display:flex; align-items:center; justify-content:center;
+}
+.why__stats {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px;
+  width:100%; max-width:340px;
+}
+.why__stat {
+  background: var(--clr-bg);
+  border-radius: var(--radius); padding:28px 20px;
+  text-align:center;
+  border:1px solid rgba(0,0,0,.05);
+}
+.why__stat .num {
+  font-size:1.8rem; font-weight:800;
+  font-family: var(--ff-primary);
+  color: var(--clr-dark);
+}
+.why__stat .label {
+  font-size:.68rem; color: var(--clr-text-lo);
+  margin-top:4px; text-transform:uppercase; letter-spacing:.04em;
+}
+.why__stat:first-child { background: var(--clr-dark); color:#fff; }
+.why__stat:first-child .num { color: var(--clr-accent); }
+.why__stat:first-child .label { color:rgba(255,255,255,.5); }
+
+/* Service Areas */
+.areas { padding:80px 0; background: var(--clr-surface); }
+.areas__inner {
+  display:grid; grid-template-columns:1fr 2fr; gap:60px;
+  align-items:center;
+}
+.areas__content { text-align:left; }
+.areas__content h2 {
+  font-size:clamp(1.5rem,3vw,2.1rem); font-weight:800;
+  margin-top:14px; margin-bottom:20px;
+  font-family: var(--ff-primary);
+}
+.areas__content p {
+  color: var(--clr-text-mid); font-size:.9rem;
+  max-width:400px; line-height:1.7;
+}
+.areas__map { position:relative; }
+.areas__main { margin-bottom:40px; }
+.areas__location {
+  display:flex; gap:16px; align-items:center;
+  background: var(--clr-bg); border-radius: var(--radius);
+  padding:24px; box-shadow: var(--shadow-sm);
+  border:1px solid rgba(0,0,0,.05);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.areas__location:hover { transform:translateY(-4px); box-shadow: var(--shadow-md); }
+.areas__location--primary {
+  background: linear-gradient(135deg, var(--clr-accent), #f0c84a);
+  color:#fff;
+}
+.areas__location--primary .areas__details h3 { color:#fff; }
+.areas__location--primary .areas__details p { color:rgba(255,255,255,.8); }
+.areas__icon { font-size:2rem; }
+.areas__details h3 { font-size:1.1rem; font-weight:700; margin-bottom:4px; }
+.areas__details h5 { font-size:.95rem; font-weight:600; margin-bottom:2px; }
+.areas__details p { font-size:.8rem; color: var(--clr-text-lo); margin:0; }
+.areas__badge {
+  display:inline-block; background:rgba(255,255,255,.2);
+  color:#fff; font-size:.65rem; font-weight:600;
+  padding:.2rem .6rem; border-radius:12px;
+  margin-top:8px;
+}
+.areas__covered h4 {
+  font-size:1rem; font-weight:700; margin-bottom:16px;
+  color: var(--clr-text);
+}
+.areas__grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr)); gap:16px;
+}
+
+/* Contact */
+.contact { padding:100px 0; }
+.contact__card {
+  background: var(--clr-dark); border-radius:24px;
+  padding:64px 48px; text-align:left;
+  position:relative; overflow:hidden;
+  color:#fff;
+}
+.contact__card::before {
+  content:''; position:absolute;
+  top:-80px; left:-80px;
+  width:320px; height:320px; border-radius:50%;
+  background: var(--clr-accent); opacity:.08;
+}
+.contact__card::after {
+  content:''; position:absolute;
+  bottom:-60px; right:-60px;
+  width:220px; height:220px; border-radius:50%;
+  background: var(--clr-accent2); opacity:.06;
+}
+.contact__card > * { position:relative; z-index:1; }
+.contact__card h2 {
+  font-size:clamp(1.5rem,3.2vw,2.2rem); font-weight:800;
+  margin-bottom:10px; font-family: var(--ff-primary);
+}
+.contact__card p {
+  color:rgba(255,255,255,.55); font-size:.9rem;
+  max-width:480px; margin-bottom:32px; line-height:1.85;
+}
+.contact__row {
+  display:flex; gap:14px; justify-content:flex-start; flex-wrap:wrap;
+}
+.btn--wa { background: var(--clr-wa); color:#fff; }
+.btn--wa:hover { background:#1db954; }
+.btn--light {
+  background:rgba(255,255,255,.1); color:#fff;
+  border:1.5px solid rgba(255,255,255,.2);
+}
+.btn--light:hover { background:rgba(255,255,255,.18); }
+
+.contact__pills {
+  display:flex; gap:24px; justify-content:flex-start;
+  flex-wrap:wrap; margin-top:36px;
+}
+.contact__pill {
+  display:flex; align-items:center; gap:8px;
+  font-size:.75rem; color:rgba(255,255,255,.45);
+}
+.contact__pill svg { width:15px; height:15px; opacity:.6; }
+
+.social-link { cursor:pointer; transition: opacity var(--transition); }
+.social-link:hover { opacity:.8; }
+
+/* Footer */
+.footer {
+  background: var(--clr-surface);
+  border-top:1px solid rgba(0,0,0,.06);
+  padding:44px 0 28px;
+}
+.footer__inner {
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:16px;
+}
+.footer__brand { font-size:.78rem; font-weight:700; }
+.footer__brand span { font-weight:400; color: var(--clr-text-lo); display:block; font-size:.67rem; margin-top:2px; font-family: var(--ff-arabic); }
+.footer__links { display:flex; gap:20px; }
+.footer__links a { font-size:.72rem; color: var(--clr-text-lo); transition: color var(--transition); }
+.footer__links a:hover { color: var(--clr-text); }
+.footer__copy { font-size:.66rem; color: var(--clr-text-lo); width:100%; text-align:center; margin-top:12px; }
+
+/* WhatsApp FAB */
+.wa-fab {
+  position:fixed; bottom:28px; right:28px; z-index:200;
+  width:58px; height:58px; border-radius:50%;
+  background: var(--clr-wa);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 4px 18px rgba(37,211,102,.4);
+  transition: transform var(--transition), box-shadow var(--transition);
+  animation: pulse-wa 2.4s infinite;
+}
+.wa-fab:hover { transform:scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,.55); }
+.wa-fab svg { width:28px; height:28px; fill:#fff; }
+@keyframes pulse-wa {
+  0%,100%{ box-shadow: 0 4px 18px rgba(37,211,102,.4); }
+  50%    { box-shadow: 0 4px 28px rgba(37,211,102,.55); }
+}
+.wa-fab::before {
+  content:'Book Now'; position:absolute;
+  right:68px; top:50%; transform:translateY(-50%);
+  background: var(--clr-dark); color:#fff;
+  font-size:.68rem; font-weight:600; white-space:nowrap;
+  padding:.34rem .72rem; border-radius:8px;
+  opacity:0; transition: opacity var(--transition);
+  pointer-events:none; letter-spacing:.02em;
+}
+.wa-fab:hover::before { opacity:1; }
+
+/* Auth Modal */
+.auth-modal {
+  position:fixed; inset:0; z-index:1000;
+  background:rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center;
+  opacity:0; visibility:hidden; transition:opacity .3s, visibility .3s;
+}
+.auth-modal.show { opacity:1; visibility:visible; }
+.auth-modal__content {
+  background:#fff; border-radius: var(--radius); padding:32px;
+  max-width:400px; width:90%; text-align:center;
+}
+.auth-modal h3 { margin-bottom:20px; }
+.auth-modal input { width:100%; padding:12px; margin-bottom:16px; border:1px solid #ddd; border-radius:8px; }
+.auth-modal .btn { width:100%; margin-bottom:10px; }
+
+/* Mobile */
+@media (max-width:860px){
+  .hero__inner { grid-template-columns:1fr; text-align:center; }
+  .hero__content { text-align:center; }
+  .hero__desc { margin-inline:auto; }
+  .hero__actions { justify-content:center; }
+  .hero__visual { order:-1; }
+  .why__inner { grid-template-columns:1fr; }
+  .why__content { text-align:center; }
+  .why__item { flex-direction:column; align-items:center; text-align:center; }
+  .why__visual { order:-1; }
+  .areas__inner { grid-template-columns:1fr; text-align:center; }
+  .areas__content { text-align:center; }
+  .areas__location { flex-direction:column; text-align:center; }
+  .contact__card { padding:48px 28px; text-align:center; }
+  .contact__card p { margin-inline:auto; }
+  .contact__row { justify-content:center; }
+  .contact__pills { justify-content:center; }
+  .footer__inner { flex-direction:column; text-align:center; }
+  .services__head { text-align:center; }
+}
+@media (max-width:600px){
+  .nav__links { display:none; }
+  .nav__burger { display:flex; }
+  .nav__links.open {
+    display:flex; flex-direction:column; gap:0;
+    position:absolute; inset:68px 0 auto;
+    background:var(--clr-surface);
+    border-bottom:1px solid rgba(0,0,0,.06);
+  }
+  .nav__links.open a { padding:14px 24px; font-size:.86rem; border-bottom:1px solid rgba(0,0,0,.04); }
+  .hero__icon-wrap { width:220px; height:220px; }
+  .services__grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- STRIPE -->
+<div class="stripe-bar"><div></div><div></div><div></div><div></div></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <svg width="34" height="34" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="6" fill="#1e1e1e"/>
+          <path d="M30 24 C28 16 22 6 30 2 C38 6 32 16 30 24Z" stroke="#1e1e1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M35.2 32.6 C41.4 37.2 50.8 40.4 53.2 32.4 C50.4 26.6 41.2 27.8 35.2 32.6Z" stroke="#1e1e1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M24.8 32.6 C18.6 37.2 9.2 40.4 6.8 32.4 C9.6 26.6 18.8 27.8 24.8 32.6Z" stroke="#1e1e1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line x1="28" y1="24" x2="28" y2="10" stroke="#d4a017" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="30" y1="23" x2="30" y2="7" stroke="#2e7d32" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="32" y1="24" x2="32" y2="10" stroke="#c62828" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <div class="nav__logo-text">
+          Special Technician
+          <span>الفني المتميز</span>
+        </div>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <% if (user) { %>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="#" onclick="logout()">Logout</a></li>
+        <% } else { %>
+          <li><a href="#" onclick="showAuthModal()">Login</a></li>
+        <% } %>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__content">
+      <div class="hero__badge"><span class="tag">HVAC Specialists</span></div>
+      <h1 class="hero__title">
+        AC Maintenance<br/>
+        <span class="highlight">Done Right.</span>
+      </h1>
+      <p class="hero__desc">
+        Professional maintenance, repair &amp; installation of air conditioning, cooling, ventilation and heating systems across Jazan and the region — with transparent pricing and a real guarantee.
+      </p>
+      <div class="hero__actions">
+        <% if (user) { %>
+          <a href="#services" class="btn btn--accent">Book Service</a>
+        <% } else { %>
+          <a href="#" onclick="showAuthModal()" class="btn btn--accent">Book Service</a>
+        <% } %>
+        <a href="#services" class="btn btn--outline">View Services</a>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <div class="hero__icon-wrap">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="55" width="140" height="90" rx="12" stroke="#1e1e1e" stroke-width="4" fill="none"/>
+          <line x1="48" y1="80" x2="152" y2="80" stroke="#1e1e1e" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="48" y1="90" x2="152" y2="90" stroke="#1e1e1e" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="48" y1="100" x2="152" y2="100" stroke="#1e1e1e" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="48" y1="110" x2="152" y2="110" stroke="#1e1e1e" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="140" cy="75" r="5" fill="#2e7d32"/>
+          <line x1="30" y1="55" x2="170" y2="55" stroke="#d4a017" stroke-width="3" stroke-linecap="round"/>
+          <line x1="70" y1="145" x2="70" y2="165" stroke="#1e1e1e" stroke-width="1.5" stroke-dasharray="3 4" stroke-linecap="round" opacity=".35"/>
+          <line x1="130" y1="145" x2="130" y2="162" stroke="#1e1e1e" stroke-width="1.5" stroke-dasharray="3 4" stroke-linecap="round" opacity=".35"/>
+          <ellipse cx="70" cy="170" rx="3" ry="4" fill="#1e1e1e" opacity=".2"/>
+          <ellipse cx="130" cy="167" rx="3" ry="4" fill="#1e1e1e" opacity=".2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services__head">
+      <span class="tag">Services &amp; Pricing</span>
+      <h2>Everything you need, in one place</h2>
+      <p>Clear, upfront pricing — no hidden fees, just quality work you can count on.</p>
+    </div>
+
+    <div class="services__tabs" id="servicesTabs">
+      <!-- Tabs will load dynamically from API -->
+    </div>
+
+    <div class="services__grid" id="servicesGrid">
+      <!-- Services will load dynamically from API -->
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="why__inner">
+      <div class="why__content">
+        <span class="tag">Why Us?</span>
+        <h2>The service you deserve</h2>
+        <div class="why__list">
+          <div class="why__item">
+            <div class="why__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#d4a017" stroke-width="2.2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4>Guaranteed Quality</h4>
+              <p>Every repair comes with a guarantee — if you're not satisfied, you don't pay.</p>
+            </div>
+          </div>
+          <div class="why__item">
+            <div class="why__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h4>Fast Response</h4>
+              <p>We're at your door within hours — no long waits, no runaround.</p>
+            </div>
+          </div>
+          <div class="why__item">
+            <div class="why__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c62828" stroke-width="2.2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <h4>Certified Technicians</h4>
+              <p>A trained and certified team specialising in all HVAC systems.</p>
+            </div>
+          </div>
+          <div class="why__item">
+            <div class="why__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#d4a017" stroke-width="2.2" stroke-linecap="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <div>
+              <h4>Transparent Pricing</h4>
+              <p>No surprises — you'll know the exact cost before any work begins.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why__visual">
+        <div class="why__stats">
+          <div class="why__stat">
+            <div class="num">500+</div>
+            <div class="label">Happy Clients</div>
+          </div>
+          <div class="why__stat">
+            <div class="num">4</div>
+            <div class="label">Cities Served</div>
+          </div>
+          <div class="why__stat">
+            <div class="num">24</div>
+            <div class="label">Hr Response</div>
+          </div>
+          <div class="why__stat">
+            <div class="num">98%</div>
+            <div class="label">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREAS -->
+<section class="areas" id="areas">
+  <div class="container">
+    <div class="areas__inner">
+      <div class="areas__content">
+        <span class="tag">Service Areas</span>
+        <h2>Where we serve</h2>
+        <p>Based in Jazan, we proudly serve the entire region with reliable HVAC services.</p>
+      </div>
+      <div class="areas__map">
+        <div class="areas__main">
+          <div class="areas__location areas__location--primary">
+            <div class="areas__icon">📍</div>
+            <div class="areas__details">
+              <h3>Saudi Arabia - Jazan</h3>
+              <p>السعودية - جازان</p>
+              <span class="areas__badge">Main Hub</span>
+            </div>
+          </div>
+        </div>
+        <div class="areas__covered">
+          <h4>Covered Cities</h4>
+          <div class="areas__grid" id="service-areas-grid">
+            <p style="color: #5a5a5a;">Loading service areas...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact__card" id="contactCard">
+      <!-- Contact content loads dynamically -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        Special Technician
+        <span>الفني المتميز – HVAC Maintenance</span>
+      </div>
+      <ul class="footer__links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <p class="footer__copy">© 2026 Special Technician – All rights reserved</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FAB -->
+<a href="https://wa.me/+966502258883" class="wa-fab" aria-label="Book an appointment via WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1 .24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.27.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.98-.98-.98H4.19C3.65 3 3 3.24 3 3.79c0 8.28 6.93 15.21 15.21 15.21.55 0 .79-.65.79-1.18v-3.45c0-.54-.45-.98-.99-.98z"/></svg>
+</a>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal" id="authModal">
+  <div class="auth-modal__content">
+    <h3>Login / Sign Up</h3>
+    <form id="authForm">
+      <input type="tel" id="phone" placeholder="Phone Number (e.g. +966501234567)" required>
+      <div id="auth-container" style="display: none;"></div>
+      <button type="button" class="btn btn--accent" onclick="sendOTP()">Send OTP</button>
+      <input type="text" id="otp" placeholder="Enter OTP" style="display:none;">
+      <input type="text" id="name" placeholder="Full Name" style="display:none;">
+      <input type="email" id="email" placeholder="Email (optional)" style="display:none;">
+      <button type="submit" class="btn btn--accent" style="display:none;">Verify & Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="auth-modal" id="bookingModal">
+  <div class="auth-modal__content">
+    <h3>Book Service</h3>
+    <form id="bookingForm">
+      <select id="serviceSelect" required>
+        <option value="">Loading services...</option>
+      </select>
+      <div id="selectedPrice" style="font-size:.85rem; color: var(--clr-accent2); font-weight:600; margin-top:8px; text-align:right;"></div>
+      <input type="datetime-local" id="scheduledDate" required>
+      <select id="location" required>
+        <option value="">Loading cities...</option>
+      </select>
+      <textarea id="description" placeholder="Additional details"></textarea>
+      <button type="submit" class="btn btn--accent">Book Now</button>
+    </form>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+document.getElementById('burger').addEventListener('click', function(){
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+document.querySelectorAll('.services__tab').forEach(tab => {
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.services__tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+const revealEls = document.querySelectorAll('.service-card, .why__item, .why__stat, .hero__content, .hero__visual');
+revealEls.forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity .6s ease, transform .6s ease';
+});
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }, i * 80);
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+revealEls.forEach(el => io.observe(el));
+
+// Auth functions
+let confirmationResult;
+let recaptchaVerifier;
+
+function showAuthModal() {
+  document.getElementById('authModal').classList.add('show');
+  // Initialize reCAPTCHA verifier (invisible)
+  if (!recaptchaVerifier) {
+    recaptchaVerifier = new RecaptchaVerifier('auth-container', {
+      'size': 'invisible',
+      'callback': (response) => {
+        console.log('reCAPTCHA verified');
+      }
+    }, auth);
+  }
+}
+
+function sendOTP() {
+  const phone = document.getElementById('phone').value;
+  if (!recaptchaVerifier) {
+    recaptchaVerifier = new RecaptchaVerifier('auth-container', {
+      'size': 'invisible'
+    }, auth);
+  }
+  signInWithPhoneNumber(auth, phone, recaptchaVerifier)
+    .then((result) => {
+      confirmationResult = result;
+      document.getElementById('otp').style.display = 'block';
+      document.getElementById('name').style.display = 'block';
+      document.getElementById('email').style.display = 'block';
+      document.querySelector('#authForm button[type="submit"]').style.display = 'block';
+    }).catch((error) => {
+      console.error('Error sending OTP:', error);
+      alert('Failed to send OTP: ' + error.message);
+      // Reset verifier on error
+      recaptchaVerifier = null;
+    });
+}
+
+document.getElementById('authForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const otp = document.getElementById('otp').value;
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  confirmationResult.confirm(otp).then((result) => {
+    const user = result.user;
+    // Send to server
+    fetch('/auth/verify-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ uid: user.uid, name, email, phone: user.phoneNumber })
+    }).then(res => res.json()).then(data => {
+      if (data.user) {
+        location.reload();
+      } else {
+        alert('Login failed');
+      }
+    });
+  }).catch((error) => {
+    console.error('Error verifying OTP:', error);
+    alert('Invalid OTP');
+  });
+});
+
+function logout() {
+  fetch('/auth/logout', { method: 'POST' }).then(() => location.reload());
+}
+
+// Booking
+const isLoggedIn = <%= user ? 'true' : 'false' %>;
+let allServices = [];
+
+// Load services dynamically
+async function loadServices() {
+  try {
+    const response = await fetch('/api/catalog');
+    if (!response.ok) throw new Error('Failed to load services');
+    
+    const data = await response.json();
+    allServices = data.services || [];
+    
+    if (allServices.length > 0) {
+      const select = document.getElementById('serviceSelect');
+      select.innerHTML = '<option value="">Select Service</option>' + 
+        allServices.map(service => 
+          `<option value="${service._id}" data-price="${service.price}" data-name="${service.name}">
+            ${service.name} - ${service.price} SAR
+          </option>`
+        ).join('');
+    }
+  } catch (error) {
+    console.error('Error loading services:', error);
+  }
+}
+
+// Load cities for location dropdown
+async function loadCities() {
+  try {
+    const response = await fetch('/api/areas');
+    if (!response.ok) throw new Error('Failed to load cities');
+    
+    const data = await response.json();
+    const areas = data.areas || data || [];
+    
+    if (areas.length > 0) {
+      const select = document.getElementById('location');
+      select.innerHTML = '<option value="">Select City</option>' + 
+        areas.map(area => 
+          `<option value="${area.cityName}">${area.cityName}</option>`
+        ).join('');
+    }
+  } catch (error) {
+    console.error('Error loading cities:', error);
+  }
+}
+
+// Update price display when service is selected
+document.getElementById('serviceSelect').addEventListener('change', function() {
+  const selectedOption = this.selectedOptions[0];
+  const priceDisplay = document.getElementById('selectedPrice');
+  if (this.value) {
+    const price = selectedOption.dataset.price;
+    priceDisplay.textContent = `💰 Price: ${price} SAR`;
+  } else {
+    priceDisplay.textContent = '';
+  }
+});
+
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const serviceSelect = document.getElementById('serviceSelect');
+  const serviceId = serviceSelect.value;
+  const serviceName = serviceSelect.selectedOptions[0].dataset.name;
+  const price = parseInt(serviceSelect.selectedOptions[0].dataset.price);
+  const scheduledDate = document.getElementById('scheduledDate').value;
+  const location = document.getElementById('location').value;
+  const description = document.getElementById('description').value;
+  
+  fetch('/api/services/request', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ service: serviceName, scheduledDate, location, description, price })
+  }).then(res => res.json()).then(data => {
+    if (data.success) {
+      alert('Service booked successfully! 🎉');
+      // Navigate to dashboard
+      setTimeout(() => {
+        window.location.href = '/dashboard';
+      }, 500);
+    } else {
+      alert('Booking failed: ' + (data.error || 'Unknown error'));
+    }
+  }).catch(err => {
+    console.error('Booking error:', err);
+    alert('Failed to book service');
+  });
+});
+
+// Global variable to store all services
+let allServicesData = [];
+
+// Render service cards dynamically with category filtering
+async function renderServiceCards(selectedCategory = null) {
+  try {
+    const response = await fetch('/api/catalog');
+    if (!response.ok) throw new Error('Failed to load services');
+    
+    const data = await response.json();
+    const services = data.services || [];
+    allServicesData = services;
+    
+    // Get unique categories from services
+    const categories = [...new Set(services.map(s => s.category))].filter(Boolean);
+    
+    // Render category tabs
+    if (categories.length > 0) {
+      renderCategoryTabs(categories, selectedCategory);
+    }
+    
+    // Render services for selected category
+    if (selectedCategory === null && categories.length > 0) {
+      selectedCategory = categories[0];
+    }
+    
+    const filteredServices = selectedCategory 
+      ? services.filter(s => s.category === selectedCategory)
+      : services;
+    
+    const grid = document.getElementById('servicesGrid');
+    
+    if (filteredServices.length > 0) {
+      const icons = { 
+        cleaning: '🧹', 
+        repair: '🔧', 
+        maintenance: '🛠️', 
+        installation: '⚡', 
+        inspection: '🔍',
+        plumbing: '🚰',
+        electrical: '⚡'
+      };
+      
+      const html = filteredServices.map((service, index) => `
+        <div class="service-card" data-service="${service.name}" data-price="${service.price}" data-category="${service.category}">
+          <div class="service-card__icon">
+            <span style="font-size: 1.8rem;">${service.icon || icons[service.category] || '⚙️'}</span>
+          </div>
+          <h3>${service.name}</h3>
+          <p>${service.description || 'Professional service'}</p>
+          <div class="service-card__price">
+            <span class="amount">${service.price}</span>
+            <span class="currency">SAR</span>
+          </div>
+        </div>
+      `).join('');
+      grid.innerHTML = html;
+      
+      // Re-attach click listeners to new cards
+      attachServiceCardListeners();
+    } else {
+      grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--clr-text-lo);">No services available in this category</p>';
+    }
+  } catch (error) {
+    console.error('Error loading service cards:', error);
+  }
+}
+
+// Render category tabs dynamically
+function renderCategoryTabs(categories, selectedCategory) {
+  const tabsContainer = document.getElementById('servicesTabs');
+  
+  // Map category names for display
+  const categoryNames = {
+    cleaning: 'Cleaning',
+    repair: 'Repair',
+    maintenance: 'Maintenance',
+    installation: 'Installation',
+    inspection: 'Inspection',
+    plumbing: 'Plumbing',
+    electrical: 'Electrical'
+  };
+  
+  const tabsHtml = categories.map(cat => `
+    <button class="services__tab ${selectedCategory === cat ? 'active' : ''}" data-tab="${cat}">
+      ${categoryNames[cat] || cat}
+    </button>
+  `).join('');
+  
+  tabsContainer.innerHTML = tabsHtml;
+  
+  // Attach tab click listeners
+  document.querySelectorAll('.services__tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      const selectedTab = this.dataset.tab;
+      document.querySelectorAll('.services__tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      renderServiceCards(selectedTab);
+    });
+  });
+}
+
+// Attach click listeners to service cards
+function attachServiceCardListeners() {
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('click', function() {
+      if (!isLoggedIn) {
+        showAuthModal();
+        return;
+      }
+      const service = this.dataset.service;
+      const price = this.dataset.price;
+      document.getElementById('serviceSelect').value = service;
+      loadCities(); // Load cities when modal opens
+      document.getElementById('bookingModal').classList.add('show');
+    });
+  });
+}
+
+// Load service areas dynamically
+async function loadServiceAreas() {
+  try {
+    const response = await fetch('/api/areas');
+    
+    if (!response.ok) {
+      console.error('API error:', response.status);
+      return showDefaultAreas();
+    }
+    
+    const data = await response.json();
+    const grid = document.getElementById('service-areas-grid');
+    
+    console.log('Service areas loaded:', data);
+    
+    // Check if data has areas and it's not empty
+    if (data && data.areas && Array.isArray(data.areas) && data.areas.length > 0) {
+      const html = data.areas.map(area => `
+        <div class="areas__location">
+          <div class="areas__icon">🏙️</div>
+          <div class="areas__details">
+            <h5>${area.arabicName || 'Unknown'}</h5>
+            <p>${area.cityName || 'Unknown'}</p>
+            <p style="font-size: 12px; color: #5a5a5a; margin-top: 4px;">📦 ${area.deliveryTime || 24}h delivery</p>
+          </div>
+        </div>
+      `).join('');
+      grid.innerHTML = html;
+    } else {
+      console.warn('No service areas found or empty response');
+      showDefaultAreas();
+    }
+  } catch (error) {
+    console.error('Error loading service areas:', error);
+    showDefaultAreas();
+  }
+}
+
+// Show default areas if API fails
+function showDefaultAreas() {
+  const grid = document.getElementById('service-areas-grid');
+  grid.innerHTML = `
+    <div class="areas__location">
+      <div class="areas__icon">🏙️</div>
+      <div class="areas__details">
+        <h5>صبيا</h5>
+        <p>Sabya</p>
+        <p style="font-size: 12px; color: #5a5a5a; margin-top: 4px;">📦 24h delivery</p>
+      </div>
+    </div>
+    <div class="areas__location">
+      <div class="areas__icon">🏙️</div>
+      <div class="areas__details">
+        <h5>ابو عريش</h5>
+        <p>Abo Arish</p>
+        <p style="font-size: 12px; color: #5a5a5a; margin-top: 4px;">📦 24h delivery</p>
+      </div>
+    </div>
+    <div class="areas__location">
+      <div class="areas__icon">🏙️</div>
+      <div class="areas__details">
+        <h5>صامطة</h5>
+        <p>Samtah</p>
+        <p style="font-size: 12px; color: #5a5a5a; margin-top: 4px;">📦 24h delivery</p>
+      </div>
+    </div>
+  `;
+}
+
+// Load contact info dynamically
+async function loadContact() {
+  try {
+    const response = await fetch('/api/contact');
+    if (!response.ok) throw new Error('Failed to load contact');
+    
+    const contact = await response.json();
+    const card = document.getElementById('contactCard');
+    
+    const phoneDisplay = contact.phone.replace('+966', '+966 ').replace(/(\d{2})(\d{3})(\d{4})/, '$1 $2 $3');
+    
+    const html = `
+      <h2>${contact.title || 'Ready to get started?'}</h2>
+      <p>${contact.description || 'Reach out via WhatsApp and book your maintenance appointment in minutes.'}</p>
+      <div class="contact__row">
+        <a href="${contact.whatsappLink || 'https://wa.me/'}" class="btn btn--wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1 .24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.27.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.98-.98-.98H4.19C3.65 3 3 3.24 3 3.79c0 8.28 6.93 15.21 15.21 15.21.55 0 .79-.65.79-1.18v-3.45c0-.54-.45-.98-.99-.98z"/></svg>
+          WhatsApp
+        </a>
+        <a href="tel:${contact.phone || ''}" class="btn btn--light">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call Us
+        </a>
+      </div>
+      <div class="contact__pills">
+        <span class="contact__pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          ${phoneDisplay}
+        </span>
+        <span class="contact__pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          ${contact.email || 'contact@example.com'}
+        </span>
+        <span class="contact__pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          ${contact.address || 'Location'}
+        </span>
+        ${contact.instagram && contact.instagram !== '#' ? `<a href="${contact.instagram}" class="contact__pill social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+          Instagram
+        </a>` : ''}
+        ${contact.tiktok && contact.tiktok !== '#' ? `<a href="${contact.tiktok}" class="contact__pill social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          TikTok
+        </a>` : ''}
+        ${contact.snapchat && contact.snapchat !== '#' ? `<a href="${contact.snapchat}" class="contact__pill social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C13.1 2 14 2.9 14 4V6H16V8H14V12C14 13.1 13.1 14 12 14S10 13.1 10 12V8H8V6H10V4C10 2.9 10.9 2 12 2Z"/></svg>
+          Snapchat
+        </a>` : ''}
+      </div>
+    `;
+    
+    card.innerHTML = html;
+  } catch (error) {
+    console.error('Error loading contact:', error);
+  }
+}
+
+// Load areas when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  loadServiceAreas();
+  loadServices();
+  renderServiceCards();
+  loadContact();
+});
+
+// Close modals
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('auth-modal')) {
+    e.target.classList.remove('show');
+  }
+});
+</script>
+</body>
+</html>

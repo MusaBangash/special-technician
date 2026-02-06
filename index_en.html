@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Special Technician – Professional HVAC maintenance, repair &amp; installation in Jazan, Saudi Arabia"/>
+<title>Special Technician – الفني المتميز</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --clr-bg:        #f7f6f3;
+  --clr-surface:  #ffffff;
+  --clr-text:     #1a1a1a;
+  --clr-text-mid: #5a5a5a;
+  --clr-text-lo:  #8c8c8c;
+  --clr-accent:   #d4a017;
+  --clr-accent2:  #2e7d32;
+  --clr-accent3:  #c62828;
+  --clr-dark:     #1e1e1e;
+  --clr-wa:       #25d366;
+  --shadow-sm:    0 2px 8px rgba(0,0,0,.06);
+  --shadow-md:    0 6px 24px rgba(0,0,0,.10);
+  --shadow-lg:    0 12px 40px rgba(0,0,0,.14);
+  --radius:       14px;
+  --radius-sm:    8px;
+  --ff-primary:   'Outfit', sans-serif;
+  --ff-arabic:    'Cairo', sans-serif;
+  --transition:   .35s cubic-bezier(.4,0,.2,1);
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: var(--ff-primary);
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
+ul { list-style:none; }
+button { font-family:inherit; border:none; cursor:pointer; }
+
+/* ─── UTILITY ─── */
+.container {
+  width:100%; max-width:1140px;
+  margin-inline:auto; padding-inline:24px;
+}
+.tag {
+  display:inline-block;
+  font-size:.7rem; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase;
+  color: var(--clr-accent);
+  border:1.5px solid var(--clr-accent);
+  border-radius:20px;
+  padding:.3rem .82rem;
+}
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-size:.88rem; font-weight:600;
+  padding:.72rem 1.6rem; border-radius:50px;
+  background: var(--clr-dark); color:#fff;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.btn:hover { transform:translateY(-2px); box-shadow: var(--shadow-md); }
+.btn--accent { background: var(--clr-accent); color:#fff; }
+.btn--outline {
+  background:transparent; color: var(--clr-dark);
+  border:1.8px solid var(--clr-dark);
+}
+.btn--outline:hover { background: var(--clr-dark); color:#fff; }
+
+/* ─── NAV ─── */
+.nav {
+  position:sticky; top:0; z-index:100;
+  background: rgba(247,246,243,.85);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  transition: box-shadow var(--transition);
+}
+.nav.scrolled { box-shadow: var(--shadow-sm); }
+.nav__inner {
+  display:flex; align-items:center; justify-content:space-between;
+  height:68px;
+}
+.nav__logo {
+  display:flex; align-items:center; gap:10px;
+}
+.nav__logo-text {
+  font-size:.92rem; font-weight:700;
+  line-height:1.25; font-family: var(--ff-primary);
+}
+.nav__logo-text span {
+  display:block; font-size:.6rem; font-weight:400;
+  color: var(--clr-text-lo); letter-spacing:.03em;
+  font-family: var(--ff-arabic);
+}
+.nav__links {
+  display:flex; align-items:center; gap:28px;
+}
+.nav__links a {
+  font-size:.82rem; font-weight:500; color: var(--clr-text-mid);
+  position:relative; transition: color var(--transition);
+}
+.nav__links a::after {
+  content:''; position:absolute; left:0; bottom:-4px;
+  width:0; height:2px; background: var(--clr-accent);
+  transition: width var(--transition);
+}
+.nav__links a:hover { color: var(--clr-text); }
+.nav__links a:hover::after { width:100%; }
+.nav__burger { display:none; flex-direction:column; gap:5px; padding:6px; }
+.nav__burger span {
+  width:24px; height:2px; background: var(--clr-text);
+  border-radius:2px; transition:.3s;
+}
+
+/* ─── STRIPE BAR ─── */
+.stripe-bar { height:5px; display:flex; }
+.stripe-bar div { flex:1; }
+.stripe-bar div:nth-child(1){ background: var(--clr-accent); }
+.stripe-bar div:nth-child(2){ background: var(--clr-accent2); }
+.stripe-bar div:nth-child(3){ background: var(--clr-accent3); }
+.stripe-bar div:nth-child(4){ background: var(--clr-dark); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height:92vh;
+  display:flex; align-items:center;
+  position:relative; overflow:hidden;
+  background: var(--clr-surface);
+}
+.hero::before {
+  content:''; position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:0;
+}
+.hero__inner {
+  position:relative; z-index:1;
+  display:grid; grid-template-columns:1fr 1fr; gap:48px;
+  align-items:center; width:100%; max-width:1140px;
+  margin-inline:auto; padding-inline:24px;
+  padding-block:80px 100px;
+}
+.hero__content { text-align:left; }
+.hero__badge { margin-bottom:24px; }
+.hero__title {
+  font-size:clamp(2rem, 5.5vw, 3.4rem);
+  font-weight:800; line-height:1.18;
+  color: var(--clr-dark);
+  margin-bottom:20px;
+  font-family: var(--ff-primary);
+}
+.hero__title .highlight { color: var(--clr-accent); }
+.hero__desc {
+  font-size:.97rem; color: var(--clr-text-mid);
+  max-width:440px;
+  margin-bottom:36px; line-height:1.85;
+}
+.hero__actions { display:flex; gap:14px; justify-content:flex-start; flex-wrap:wrap; }
+
+/* visual */
+.hero__visual {
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+.hero__icon-wrap {
+  width:min(340px, 80vw); height:min(340px, 80vw);
+  border-radius:50%;
+  background: linear-gradient(135deg, #f0ece4 0%, #e8e2d6 100%);
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+  box-shadow: var(--shadow-lg);
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100%{ transform:translateY(0); }
+  50%     { transform:translateY(-14px); }
+}
+.hero__icon-wrap svg { width:55%; height:55%; }
+
+.hero__cities {
+  position:absolute; bottom:0; left:50%;
+  transform:translateX(-50%) translateY(40%);
+  display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
+  width:110%;
+}
+.hero__cities span {
+  background:#fff; border:1px solid rgba(0,0,0,.08);
+  border-radius:20px; padding:.28rem .7rem;
+  font-size:.7rem; font-weight:500; color: var(--clr-text-mid);
+  white-space:nowrap;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ─── SERVICES ─── */
+.services { padding:100px 0 80px; }
+.services__head { text-align:left; margin-bottom:56px; }
+.services__head h2 {
+  font-size:clamp(1.6rem,3.5vw,2.4rem); font-weight:800;
+  margin-top:14px; font-family: var(--ff-primary);
+}
+.services__head p {
+  color: var(--clr-text-mid); font-size:.92rem;
+  margin-top:10px; max-width:440px; line-height:1.75;
+}
+
+.services__tabs {
+  display:flex; gap:10px; justify-content:center;
+  flex-wrap:wrap; margin-bottom:44px;
+}
+.services__tab {
+  font-size:.78rem; font-weight:600;
+  padding:.42rem 1rem; border-radius:20px;
+  background:#fff; color: var(--clr-text-mid);
+  border:1.5px solid rgba(0,0,0,.08);
+  transition: all var(--transition);
+}
+.services__tab:hover,
+.services__tab.active {
+  background: var(--clr-dark); color:#fff; border-color: var(--clr-dark);
+}
+
+.services__grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
+  gap:20px;
+}
+.service-card {
+  background: var(--clr-surface);
+  border-radius: var(--radius);
+  padding:28px 24px;
+  box-shadow: var(--shadow-sm);
+  border:1px solid rgba(0,0,0,.05);
+  transition: transform var(--transition), box-shadow var(--transition);
+  position:relative; overflow:hidden;
+}
+.service-card::before {
+  content:''; position:absolute;
+  top:-40px; right:-40px;
+  width:120px; height:120px; border-radius:50%;
+  background: var(--clr-accent); opacity:.06;
+}
+.service-card:hover { transform:translateY(-4px); box-shadow: var(--shadow-md); }
+.service-card__icon {
+  width:44px; height:44px; border-radius:12px;
+  background: linear-gradient(135deg, var(--clr-accent), #f0c84a);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:16px;
+}
+.service-card__icon svg { width:22px; height:22px; }
+.service-card h3 { font-size:.9rem; font-weight:700; margin-bottom:6px; }
+.service-card p { font-size:.77rem; color: var(--clr-text-lo); margin-bottom:14px; line-height:1.65; }
+.service-card__price {
+  display:flex; align-items:baseline; gap:4px;
+  justify-content:flex-end;
+}
+.service-card__price .amount {
+  font-size:1.3rem; font-weight:800; color: var(--clr-dark);
+  font-family: var(--ff-primary);
+}
+.service-card__price .currency { font-size:.72rem; color: var(--clr-text-lo); }
+
+.services__hidden-note {
+  margin-top:32px; text-align:center;
+  font-size:.74rem; color: var(--clr-text-lo); font-style:italic;
+}
+
+/* ─── WHY US ─── */
+.why { padding:80px 0; background: var(--clr-surface); }
+.why__inner {
+  display:grid; grid-template-columns:1fr 1fr; gap:60px;
+  align-items:center;
+}
+.why__content { text-align:left; }
+.why__content h2 {
+  font-size:clamp(1.5rem,3vw,2.1rem); font-weight:800;
+  margin-top:14px; margin-bottom:20px;
+  font-family: var(--ff-primary);
+}
+.why__list { display:flex; flex-direction:column; gap:18px; }
+.why__item { display:flex; gap:14px; align-items:flex-start; }
+.why__item-icon {
+  flex-shrink:0; width:38px; height:38px;
+  border-radius:10px; background: linear-gradient(135deg,#fff8e1,#fff3c4);
+  display:flex; align-items:center; justify-content:center;
+}
+.why__item-icon svg { width:18px; height:18px; }
+.why__item h4 { font-size:.84rem; font-weight:700; }
+.why__item p { font-size:.75rem; color: var(--clr-text-lo); margin-top:2px; line-height:1.6; }
+
+.why__visual {
+  display:flex; align-items:center; justify-content:center;
+}
+.why__stats {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px;
+  width:100%; max-width:340px;
+}
+.why__stat {
+  background: var(--clr-bg);
+  border-radius: var(--radius); padding:28px 20px;
+  text-align:center;
+  border:1px solid rgba(0,0,0,.05);
+}
+.why__stat .num {
+  font-size:1.8rem; font-weight:800;
+  font-family: var(--ff-primary);
+  color: var(--clr-dark);
+}
+.why__stat .label {
+  font-size:.68rem; color: var(--clr-text-lo);
+  margin-top:4px; text-transform:uppercase; letter-spacing:.04em;
+}
+.why__stat:first-child { background: var(--clr-dark); color:#fff; }
+.why__stat:first-child .num { color: var(--clr-accent); }
+.why__stat:first-child .label { color:rgba(255,255,255,.5); }
+
+/* ─── CONTACT CTA ─── */
+.contact { padding:100px 0; }
+.contact__card {
+  background: var(--clr-dark); border-radius:24px;
+  padding:64px 48px; text-align:left;
+  position:relative; overflow:hidden;
+  color:#fff;
+}
+.contact__card::before {
+  content:''; position:absolute;
+  top:-80px; left:-80px;
+  width:320px; height:320px; border-radius:50%;
+  background: var(--clr-accent); opacity:.08;
+}
+.contact__card::after {
+  content:''; position:absolute;
+  bottom:-60px; right:-60px;
+  width:220px; height:220px; border-radius:50%;
+  background: var(--clr-accent2); opacity:.06;
+}
+.contact__card > * { position:relative; z-index:1; }
+.contact__card h2 {
+  font-size:clamp(1.5rem,3.2vw,2.2rem); font-weight:800;
+  margin-bottom:10px; font-family: var(--ff-primary);
+}
+.contact__card p {
+  color:rgba(255,255,255,.55); font-size:.9rem;
+  max-width:480px; margin-bottom:32px; line-height:1.85;
+}
+.contact__row {
+  display:flex; gap:14px; justify-content:flex-start; flex-wrap:wrap;
+}
+.btn--wa { background: var(--clr-wa); color:#fff; }
+.btn--wa:hover { background:#1db954; }
+.btn--light {
+  background:rgba(255,255,255,.1); color:#fff;
+  border:1.5px solid rgba(255,255,255,.2);
+}
+.btn--light:hover { background:rgba(255,255,255,.18); }
+
+.contact__pills {
+  display:flex; gap:24px; justify-content:flex-start;
+  flex-wrap:wrap; margin-top:36px;
+}
+.contact__pill {
+  display:flex; align-items:center; gap:8px;
+  font-size:.75rem; color:rgba(255,255,255,.45);
+}
+.contact__pill svg { width:15px; height:15px; opacity:.6; }
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--clr-surface);
+  border-top:1px solid rgba(0,0,0,.06);
+  padding:44px 0 28px;
+}
+.footer__inner {
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:16px;
+}
+.footer__brand { font-size:.78rem; font-weight:700; }
+.footer__brand span { font-weight:400; color: var(--clr-text-lo); display:block; font-size:.67rem; margin-top:2px; font-family: var(--ff-arabic); }
+.footer__links { display:flex; gap:20px; }
+.footer__links a { font-size:.72rem; color: var(--clr-text-lo); transition: color var(--transition); }
+.footer__links a:hover { color: var(--clr-text); }
+.footer__copy { font-size:.66rem; color: var(--clr-text-lo); width:100%; text-align:center; margin-top:12px; }
+
+/* ─── WHATSAPP FAB ─── */
+.wa-fab {
+  position:fixed; bottom:28px; right:28px; z-index:200;
+  width:58px; height:58px; border-radius:50%;
+  background: var(--clr-wa);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 4px 18px rgba(37,211,102,.4);
+  transition: transform var(--transition), box-shadow var(--transition);
+  animation: pulse-wa 2.4s infinite;
+}
+.wa-fab:hover { transform:scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,.55); }
+.wa-fab svg { width:28px; height:28px; fill:#fff; }
+@keyframes pulse-wa {
+  0%,100%{ box-shadow: 0 4px 18px rgba(37,211,102,.4); }
+  50%    { box-shadow: 0 4px 28px rgba(37,211,102,.55); }
+}
+.wa-fab::before {
+  content:'Book Now'; position:absolute;
+  right:68px; top:50%; transform:translateY(-50%);
+  background: var(--clr-dark); color:#fff;
+  font-size:.68rem; font-weight:600; white-space:nowrap;
+  padding:.34rem .72rem; border-radius:8px;
+  opacity:0; transition: opacity var(--transition);
+  pointer-events:none; letter-spacing:.02em;
+}
+.wa-fab:hover::before { opacity:1; }
+
+/* ─── MOBILE ─── */
+@media (max-width:860px){
+  .hero__inner { grid-template-columns:1fr; text-align:center; }
+  .hero__content { text-align:center; }
+  .hero__desc { margin-inline:auto; }
+  .hero__actions { justify-content:center; }
+  .hero__visual { order:-1; }
+  .hero__cities { width:120%; }
+  .why__inner { grid-template-columns:1fr; }
+  .why__content { text-align:center; }
+  .why__item { flex-direction:column; align-items:center; text-align:center; }
+  .why__visual { order:-1; }
+  .contact__card { padding:48px 28px; text-align:center; }
+  .contact__card p { margin-inline:auto; }
+  .contact__row { justify-content:center; }
+  .contact__pills { justify-content:center; }
+  .footer__inner { flex-direction:column; text-align:center; }
+  .services__head { text-align:center; }
+}
+@media (max-width:600px){
+  .nav__links { display:none; }
+  .nav__burger { display:flex; }
+  .nav__links.open {
+    display:flex; flex-direction:column; gap:0;
+    position:absolute; inset:68px 0 auto;
+    background:var(--clr-surface);
+    border-bottom:1px solid rgba(0,0,0,.06);
+  }
+  .nav__links.open a { padding:14px 24px; font-size:.86rem; border-bottom:1px solid rgba(0,0,0,.04); }
+  .hero__icon-wrap { width:220px; height:220px; }
+  .services__grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- STRIPE -->
+<div class="stripe-bar"><div></div><div></div><div></div><div></div></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <svg width="34" height="34" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="6" fill="#1e1e1e"/>
+          <path d="M30 24 C28 16 22 6 30 2 C38 6 32 16 30 24Z" stroke="#1e1e1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M35.2 32.6 C41.4 37.2 50.8 40.4 53.2 32.4 C50.4 26.6 41.2 27.8 35.2 32.6Z" stroke="#1e1e1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M24.8 32.6 C18.6 37.2 9.2 40.4 6.8 32.4 C9.6 26.6 18.8 27.8 24.8 32.6Z" stroke="#1e1e1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line x1="28" y1="24" x2="28" y2="10" stroke="#d4a017" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="30" y1="23" x2="30" y2="7" stroke="#2e7d32" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="32" y1="24" x2="32" y2="10" stroke="#c62828" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <div class="nav__logo-text">
+          Special Technician
+          <span>الفني المتميز</span>
+        </div>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://wa.me/+960502258883" class="btn btn--accent" style="font-size:.76rem;padding:.4rem 1rem;">Book Now</a></li>
+      </ul>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__content">
+      <div class="hero__badge"><span class="tag">HVAC Specialists</span></div>
+      <h1 class="hero__title">
+        AC Maintenance<br/>
+        <span class="highlight">Done Right.</span>
+      </h1>
+      <p class="hero__desc">
+        Professional maintenance, repair &amp; installation of air conditioning, cooling, ventilation and heating systems across Jazan and the region — with transparent pricing and a real guarantee.
+      </p>
+      <div class="hero__actions">
+        <a href="https://wa.me/+960502258883" class="btn btn--accent">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1 .24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.27.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.98-.98-.98H4.19C3.65 3 3 3.24 3 3.79c0 8.28 6.93 15.21 15.21 15.21.55 0 .79-.65.79-1.18v-3.45c0-.54-.45-.98-.99-.98z"/></svg>
+          Book via WhatsApp
+        </a>
+        <a href="#services" class="btn btn--outline">View Services</a>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <div class="hero__icon-wrap">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="55" width="140" height="90" rx="12" stroke="#1e1e1e" stroke-width="4" fill="none"/>
+          <line x1="48" y1="80" x2="152" y2="80" stroke="#1e1e1e" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="48" y1="90" x2="152" y2="90" stroke="#1e1e1e" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="48" y1="100" x2="152" y2="100" stroke="#1e1e1e" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="48" y1="110" x2="152" y2="110" stroke="#1e1e1e" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="140" cy="75" r="5" fill="#2e7d32"/>
+          <line x1="30" y1="55" x2="170" y2="55" stroke="#d4a017" stroke-width="3" stroke-linecap="round"/>
+          <line x1="70" y1="145" x2="70" y2="165" stroke="#1e1e1e" stroke-width="1.5" stroke-dasharray="3 4" stroke-linecap="round" opacity=".35"/>
+          <line x1="130" y1="145" x2="130" y2="162" stroke="#1e1e1e" stroke-width="1.5" stroke-dasharray="3 4" stroke-linecap="round" opacity=".35"/>
+          <ellipse cx="70" cy="170" rx="3" ry="4" fill="#1e1e1e" opacity=".2"/>
+          <ellipse cx="130" cy="167" rx="3" ry="4" fill="#1e1e1e" opacity=".2"/>
+        </svg>
+      </div>
+      <div class="hero__cities">
+        <span>📍 Jazan</span>
+        <span>📍 Sabya</span>
+        <span>📍 Abo Arish</span>
+        <span>📍 Samtah</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services__head">
+      <span class="tag">Services &amp; Pricing</span>
+      <h2>Everything you need, in one place</h2>
+      <p>Clear, upfront pricing — no hidden fees, just quality work you can count on.</p>
+    </div>
+
+    <div class="services__tabs">
+      <button class="services__tab active" data-tab="hvac">HVAC &amp; Cooling</button>
+      <button class="services__tab" data-tab="plumbing" style="opacity:.4;pointer-events:none;" title="Coming soon">Plumbing (Soon)</button>
+      <button class="services__tab" data-tab="electrical" style="opacity:.4;pointer-events:none;" title="Coming soon">Electrical (Soon)</button>
+    </div>
+
+    <div class="services__grid" id="servicesGrid">
+      <!-- Card 1 -->
+      <div class="service-card">
+        <div class="service-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h3>Unit Cleaning</h3>
+        <p>Full cleaning of filters, evaporator coils and outdoor condenser unit.</p>
+        <div class="service-card__price">
+          <span class="amount">150</span>
+          <span class="currency">SAR</span>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="service-card">
+        <div class="service-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </div>
+        <h3>Full Inspection &amp; Repair</h3>
+        <p>Complete diagnostic check and repair of any fault — repair guaranteed.</p>
+        <div class="service-card__price">
+          <span class="amount">300</span>
+          <span class="currency">SAR</span>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="service-card">
+        <div class="service-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Refrigerant Recharge</h3>
+        <p>Refill the refrigerant gas with a full circuit inspection included.</p>
+        <div class="service-card__price">
+          <span class="amount">250</span>
+          <span class="currency">SAR</span>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="service-card">
+        <div class="service-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>New Unit Installation</h3>
+        <p>Professional installation of a new AC unit with piping and circuit check.</p>
+        <div class="service-card__price">
+          <span class="amount">800</span>
+          <span class="currency">SAR</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="services__hidden-note">🔧 Plumbing &amp; Electrical services — coming soon</p>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="why__inner">
+      <div class="why__content">
+        <span class="tag">Why Us?</span>
+        <h2>The service you deserve</h2>
+        <div class="why__list">
+          <div class="why__item">
+            <div class="why__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#d4a017" stroke-width="2.2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4>Guaranteed Quality</h4>
+              <p>Every repair comes with a guarantee — if you're not satisfied, you don't pay.</p>
+            </div>
+          </div>
+          <div class="why__item">
+            <div class="why__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h4>Fast Response</h4>
+              <p>We're at your door within hours — no long waits, no runaround.</p>
+            </div>
+          </div>
+          <div class="why__item">
+            <div class="why__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c62828" stroke-width="2.2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <h4>Certified Technicians</h4>
+              <p>A trained and certified team specialising in all HVAC systems.</p>
+            </div>
+          </div>
+          <div class="why__item">
+            <div class="why__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#d4a017" stroke-width="2.2" stroke-linecap="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <div>
+              <h4>Transparent Pricing</h4>
+              <p>No surprises — you'll know the exact cost before any work begins.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why__visual">
+        <div class="why__stats">
+          <div class="why__stat">
+            <div class="num">500+</div>
+            <div class="label">Happy Clients</div>
+          </div>
+          <div class="why__stat">
+            <div class="num">4</div>
+            <div class="label">Cities Served</div>
+          </div>
+          <div class="why__stat">
+            <div class="num">24</div>
+            <div class="label">Hr Response</div>
+          </div>
+          <div class="why__stat">
+            <div class="num">98%</div>
+            <div class="label">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact__card">
+      <h2>Ready to get started?</h2>
+      <p>Reach out via WhatsApp and book your maintenance appointment in minutes. We serve Jazan, Sabya, Abo Arish and Samtah.</p>
+      <div class="contact__row">
+        <a href="https://wa.me/+960502258883" class="btn btn--wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1 .24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.27.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.98-.98-.98H4.19C3.65 3 3 3.24 3 3.79c0 8.28 6.93 15.21 15.21 15.21.55 0 .79-.65.79-1.18v-3.45c0-.54-.45-.98-.99-.98z"/></svg>
+          WhatsApp
+        </a>
+        <a href="tel:+960502258883" class="btn btn--light">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call Us
+        </a>
+      </div>
+      <div class="contact__pills">
+        <span class="contact__pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +966 50 225 8883
+        </span>
+        <span class="contact__pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          specialtechnician@gmail.com
+        </span>
+        <span class="contact__pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Jazan, Saudi Arabia
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        Special Technician
+        <span>الفني المتميز – HVAC Maintenance</span>
+      </div>
+      <ul class="footer__links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <p class="footer__copy">© 2026 Special Technician – All rights reserved</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FAB -->
+<a href="https://wa.me/+960502258883" class="wa-fab" aria-label="Book an appointment via WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1 .24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.27.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.98-.98-.98H4.19C3.65 3 3 3.24 3 3.79c0 8.28 6.93 15.21 15.21 15.21.55 0 .79-.65.79-1.18v-3.45c0-.54-.45-.98-.99-.98z"/></svg>
+</a>
+
+<!-- JS -->
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+document.getElementById('burger').addEventListener('click', function(){
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+document.querySelectorAll('.services__tab').forEach(tab => {
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.services__tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+const revealEls = document.querySelectorAll('.service-card, .why__item, .why__stat, .hero__content, .hero__visual');
+revealEls.forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity .6s ease, transform .6s ease';
+});
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }, i * 80);
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

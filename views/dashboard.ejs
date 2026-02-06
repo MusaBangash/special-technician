@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Dashboard - Special Technician</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Outfit', sans-serif; 
+      background: #f7f6f3; 
+      color: #1a1a1a; 
+      padding: 20px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #d4a017, #f0c84a);
+      color: #1e1e1e;
+      padding: 30px;
+      border-radius: 14px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h1 { font-size: 2rem; }
+    .header a { 
+      background: #1e1e1e; 
+      color: #fff; 
+      padding: 10px 20px; 
+      border-radius: 8px; 
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .header a:hover { opacity: 0.8; }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+    }
+    .tab-btn {
+      padding: 12px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #5a5a5a;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s;
+      pointer-events: auto;
+      z-index: 100;
+    }
+    .tab-btn.active {
+      color: #d4a017;
+      border-bottom-color: #d4a017;
+    }
+    .tab-content { display: none; }
+    .tab-content.show { display: block; }
+
+    /* Request Card */
+    .request-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      border-left: 4px solid #d4a017;
+    }
+    .request-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #1e1e1e;
+    }
+    .request-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .info-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .info-label {
+      font-weight: 600;
+      color: #5a5a5a;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+    .info-value {
+      color: #1a1a1a;
+      font-size: 1rem;
+    }
+
+    /* Status Badge */
+    .status {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .status.pending { background: #fff3cd; color: #856404; }
+    .status.assigned { background: #d1ecf1; color: #0c5460; }
+    .status.in-progress { background: #cce5ff; color: #004085; }
+    .status.completed { background: #d4edda; color: #155724; }
+    .status.cancelled { background: #f8d7da; color: #721c24; }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: #d4a017;
+      color: #fff;
+    }
+    .btn-primary:hover { background: #b8860b; }
+    .btn-secondary {
+      background: #2e7d32;
+      color: #fff;
+    }
+    .btn-secondary:hover { background: #1b5e20; }
+    .btn-danger {
+      background: #c62828;
+      color: #fff;
+    }
+    .btn-danger:hover { background: #ad1d1d; }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.show { display: flex; }
+    .modal-content {
+      background: #fff;
+      border-radius: 14px;
+      padding: 32px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .modal h2 { margin-bottom: 20px; }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #5a5a5a;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    /* Rating */
+    .rating-group {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .rating-item {
+      text-align: center;
+    }
+    .rating-item label {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    .star-rating {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+    }
+    .star {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #ddd;
+    }
+    .star.active { color: #d4a017; }
+
+    /* Message */
+    .message {
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .message.show { display: block; }
+    .message.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .message.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .empty-state h3 { font-size: 1.5rem; margin-bottom: 10px; color: #5a5a5a; }
+    .empty-state p { color: #8c8c8c; }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .stat-card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #d4a017;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      color: #5a5a5a;
+      font-weight: 600;
+    }
+
+    /* Reviews Section */
+    .review-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .review-card h4 { margin-bottom: 8px; }
+    .review-rating {
+      color: #d4a017;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .review-text { color: #5a5a5a; line-height: 1.6; }
+    .review-date { color: #8c8c8c; font-size: 0.85rem; margin-top: 8px; }
+
+    /* Company Values */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .value-card {
+      background: #fff;
+      padding: 24px;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .value-card h4 {
+      color: #d4a017;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+    .value-card p {
+      color: #5a5a5a;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .header { flex-direction: column; gap: 15px; text-align: center; }
+      .tabs { flex-wrap: wrap; }
+      .request-info { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1>My Dashboard</h1>
+        <p style="opacity: 0.9;">Manage your service requests and reviews</p>
+      </div>
+      <a href="/">← Back Home</a>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <div class="tabs">
+      <button type="button" class="tab-btn active" onclick="switchTab('bookings', this); return false;">My Bookings</button>
+      <button type="button" class="tab-btn" onclick="switchTab('reviews', this); return false;">Reviews</button>
+      <button type="button" class="tab-btn" onclick="switchTab('why', this); return false;">Why Us</button>
+      <button type="button" class="tab-btn" onclick="switchTab('profile', this); return false;">Profile</button>
+    </div>
+
+    <!-- Bookings Tab -->
+    <div id="bookings-tab" class="tab-content show">
+      <div id="bookings-container"></div>
+    </div>
+
+    <!-- Reviews Tab -->
+    <div id="reviews-tab" class="tab-content">
+      <div class="stats-grid" id="stats-container"></div>
+      <div id="reviews-container"></div>
+    </div>
+
+    <!-- Why Us Tab -->
+    <div id="why-tab" class="tab-content">
+      <h2 style="margin-bottom: 20px;">Why Choose Special Technician</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <h4>✅ Guaranteed Quality</h4>
+          <p>Every repair comes with a guarantee — if you're not satisfied, you don't pay.</p>
+        </div>
+        <div class="value-card">
+          <h4>⚡ Fast Response</h4>
+          <p>We're at your door within hours — no long waits, no runaround.</p>
+        </div>
+        <div class="value-card">
+          <h4>🎓 Certified Technicians</h4>
+          <p>A trained and certified team specialising in all HVAC systems.</p>
+        </div>
+        <div class="value-card">
+          <h4>💰 Transparent Pricing</h4>
+          <p>No surprises — you'll know the exact cost before any work begins.</p>
+        </div>
+      </div>
+      <div class="stats-grid" style="margin-top: 30px;">
+        <div class="stat-card">
+          <div class="stat-value">500+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">4</div>
+          <div class="stat-label">Cities Served</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">24</div>
+          <div class="stat-label">Hr Response</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">98%</div>
+          <div class="stat-label">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Tab -->
+    <div id="profile-tab" class="tab-content">
+      <div class="request-card">
+        <h3>Your Profile</h3>
+        <div class="request-info">
+          <div class="info-item">
+            <div class="info-label">Name</div>
+            <div class="info-value" id="profileName">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Phone</div>
+            <div class="info-value" id="profilePhone">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Email</div>
+            <div class="info-value" id="profileEmail">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Member Since</div>
+            <div class="info-value" id="profileDate">-</div>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="/auth/logout" class="btn btn-danger">🚪 Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reschedule Modal -->
+  <div class="modal" id="rescheduleModal">
+    <div class="modal-content">
+      <h2>Reschedule Service</h2>
+      <div class="form-group">
+        <label>New Date & Time</label>
+        <input type="datetime-local" id="newDate" required>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="submitReschedule()">✅ Confirm</button>
+        <button class="btn btn-secondary" onclick="closeModal('rescheduleModal')">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Review Modal -->
+  <div class="modal" id="reviewModal">
+    <div class="modal-content">
+      <h2>Leave a Review</h2>
+      <div class="form-group">
+        <label>Overall Rating *</label>
+        <div class="star-rating" id="mainStarRating"></div>
+        <input type="hidden" id="ratingValue" value="0">
+      </div>
+      <div class="form-group">
+        <label>Title *</label>
+        <input type="text" id="reviewTitle" placeholder="Great service!">
+      </div>
+      <div class="form-group">
+        <label>Comment *</label>
+        <textarea id="reviewComment" placeholder="Tell us about your experience..."></textarea>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+        <div class="form-group">
+          <label>Quality (1-5)</label>
+          <div class="star-rating" id="qualityStars"></div>
+          <input type="hidden" id="qualityValue" value="0">
+        </div>
+        <div class="form-group">
+          <label>Response Time (1-5)</label>
+          <div class="star-rating" id="responseStars"></div>
+          <input type="hidden" id="responseValue" value="0">
+        </div>
+        <div class="form-group">
+          <label>Technician (1-5)</label>
+          <div class="star-rating" id="technicianStars"></div>
+          <input type="hidden" id="technicianValue" value="0">
+        </div>
+        <div class="form-group">
+          <label>Pricing (1-5)</label>
+          <div class="star-rating" id="pricingStars"></div>
+          <input type="hidden" id="pricingValue" value="0">
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="submitReview()">✅ Submit Review</button>
+        <button class="btn btn-secondary" onclick="closeModal('reviewModal')">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentRequestId = null;
+
+    // Switch tabs
+    function switchTab(tab, button) {
+      try {
+        console.log('🔄 Switching to tab:', tab);
+        
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('show'));
+        
+        // Show selected tab
+        const tabElement = document.getElementById(tab + '-tab');
+        if (tabElement) {
+          tabElement.classList.add('show');
+          console.log('✅ Tab shown:', tab + '-tab');
+        } else {
+          console.error('❌ Tab not found:', tab + '-tab');
+        }
+        
+        // Update button active state
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        if (button) {
+          button.classList.add('active');
+          console.log('✅ Button activated');
+        }
+
+        // Load data for the tab
+        if (tab === 'bookings') {
+          console.log('Loading bookings...');
+          loadBookings();
+        }
+        if (tab === 'reviews') {
+          console.log('Loading reviews...');
+          loadReviews();
+        }
+        if (tab === 'profile') {
+          console.log('Loading profile...');
+          loadProfile();
+        }
+      } catch (error) {
+        console.error('Error switching tab:', error);
+      }
+    }
+
+    // Show message
+    function showMessage(text, type) {
+      const msg = document.getElementById('message');
+      msg.textContent = text;
+      msg.className = `message show ${type}`;
+      setTimeout(() => msg.classList.remove('show'), 4000);
+    }
+
+    // Load bookings
+    async function loadBookings() {
+      try {
+        console.log('🔄 Loading bookings...');
+        const response = await fetch('/api/dashboard/my-requests');
+        console.log('Response status:', response.status);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const requests = await response.json();
+        console.log('📦 Bookings fetched:', requests);
+        console.log('Length:', requests ? requests.length : 'undefined');
+        const container = document.getElementById('bookings-container');
+
+        if (!requests || requests.length === 0) {
+          console.log('⚠️ No bookings found');
+          container.innerHTML = '<div class="empty-state"><h3>No bookings yet</h3><p><a href="/">Start booking a service →</a></p></div>';
+          return;
+        }
+
+        const html = requests.map(req => `
+          <div class="request-card">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+              <h3>${req.service}</h3>
+              <span class="status ${req.status}">${req.status}</span>
+            </div>
+            <div class="request-info">
+              <div class="info-item">
+                <div class="info-label">Date & Time</div>
+                <div class="info-value">${new Date(req.scheduledDate).toLocaleString()}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Location</div>
+                <div class="info-value">${req.location}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Price</div>
+                <div class="info-value">${req.price} SAR</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Notes</div>
+                <div class="info-value">${req.description || '-'}</div>
+              </div>
+            </div>
+            <div class="btn-group">
+              ${req.status === 'pending' ? `
+                <button class="btn btn-primary" onclick="openReschedule('${req._id}')">Reschedule</button>
+                <button class="btn btn-danger" onclick="cancelRequest('${req._id}')">Cancel</button>
+              ` : ''}
+              ${req.status === 'completed' ? `
+                <button class="btn btn-primary" onclick="openReview('${req._id}')">Leave Review</button>
+                <button class="btn btn-secondary" onclick="deleteRequest('${req._id}')">Delete</button>
+              ` : ''}
+              ${req.status === 'cancelled' ? `
+                <button class="btn btn-secondary" onclick="deleteRequest('${req._id}')">Delete</button>
+              ` : ''}
+              ${req.status === 'assigned' || req.status === 'in-progress' ? `
+                <span style="color: #999; font-size: 0.9rem;">Cannot delete active bookings</span>
+              ` : ''}
+            </div>
+          </div>
+        `).join('');
+
+        container.innerHTML = html;
+      } catch (error) {
+        console.error('Error loading bookings:', error);
+        showMessage('Failed to load bookings', 'error');
+      }
+    }
+
+    // Load reviews
+    async function loadReviews() {
+      try {
+        // Load stats
+        const statsResponse = await fetch('/api/dashboard/reviews/stats');
+        const stats = await statsResponse.json();
+        
+        const statsContainer = document.getElementById('stats-container');
+        statsContainer.innerHTML = `
+          <div class="stat-card">
+            <div class="stat-value">${stats.totalReviews}</div>
+            <div class="stat-label">Total Reviews</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${stats.avgRating}★</div>
+            <div class="stat-label">Avg Rating</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${stats.avgQuality}★</div>
+            <div class="stat-label">Quality</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${stats.avgResponse}★</div>
+            <div class="stat-label">Response Time</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${stats.avgTechnician}★</div>
+            <div class="stat-label">Technician</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">${stats.avgPricing}★</div>
+            <div class="stat-label">Pricing</div>
+          </div>
+        `;
+
+        // Load reviews
+        const reviewsResponse = await fetch('/api/dashboard/reviews');
+        const reviews = await reviewsResponse.json();
+        const reviewsContainer = document.getElementById('reviews-container');
+
+        if (reviews.length === 0) {
+          reviewsContainer.innerHTML = '<p style="text-align: center; padding: 40px; color: #8c8c8c;">No reviews yet</p>';
+          return;
+        }
+
+        const html = reviews.map(review => `
+          <div class="review-card">
+            <h4>${review.title}</h4>
+            <div class="review-rating">${'⭐'.repeat(review.rating)} ${review.rating}/5</div>
+            <div class="review-text">${review.comment}</div>
+            <div class="review-date">By ${review.user?.name || 'Anonymous'} • ${new Date(review.createdAt).toLocaleDateString()}</div>
+          </div>
+        `).join('');
+
+        reviewsContainer.innerHTML = html;
+      } catch (error) {
+        console.error('Error loading reviews:', error);
+        showMessage('Failed to load reviews', 'error');
+      }
+    }
+
+    // Load profile
+    async function loadProfile() {
+      try {
+        // Get user data from session (already available from page load)
+        const userName = '<%= user ? user.name : "" %>';
+        const userPhone = '<%= user ? user.phone : "" %>';
+        const userEmail = '<%= user ? user.email : "" %>';
+        
+        document.getElementById('profileName').textContent = userName || '-';
+        document.getElementById('profilePhone').textContent = userPhone || '-';
+        document.getElementById('profileEmail').textContent = userEmail || '-';
+        const createdDate = new Date().toLocaleDateString();
+        document.getElementById('profileDate').textContent = createdDate;
+      } catch (error) {
+        console.error('Error loading profile:', error);
+      }
+    }
+
+    // Open reschedule modal
+    function openReschedule(requestId) {
+      currentRequestId = requestId;
+      document.getElementById('rescheduleModal').classList.add('show');
+    }
+
+    // Submit reschedule
+    async function submitReschedule() {
+      const newDate = document.getElementById('newDate').value;
+      if (!newDate) {
+        showMessage('Please select a new date', 'error');
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/dashboard/request/${currentRequestId}/reschedule`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ scheduledDate: newDate })
+        });
+
+        if (response.ok) {
+          showMessage('✅ Service rescheduled successfully', 'success');
+          closeModal('rescheduleModal');
+          loadBookings();
+        } else {
+          const error = await response.json();
+          showMessage(error.error || 'Failed to reschedule', 'error');
+        }
+      } catch (error) {
+        console.error('Error rescheduling:', error);
+        showMessage('Error rescheduling service', 'error');
+      }
+    }
+
+    // Cancel request
+    async function cancelRequest(requestId) {
+      if (!confirm('Are you sure you want to cancel this service?')) return;
+
+      try {
+        const response = await fetch(`/api/dashboard/request/${requestId}/cancel`, { method: 'POST' });
+        if (response.ok) {
+          showMessage('✅ Service cancelled successfully', 'success');
+          loadBookings();
+        } else {
+          const error = await response.json();
+          showMessage(error.error || 'Failed to cancel', 'error');
+        }
+      } catch (error) {
+        console.error('Error cancelling:', error);
+        showMessage('Error cancelling service', 'error');
+      }
+    }
+
+    // Delete a booking
+    async function deleteRequest(requestId) {
+      if (!confirm('Are you sure you want to permanently delete this booking? This cannot be undone.')) return;
+
+      try {
+        const response = await fetch(`/api/dashboard/request/${requestId}/delete`, { method: 'POST' });
+        if (response.ok) {
+          showMessage('Booking deleted successfully', 'success');
+          loadBookings();
+        } else {
+          const error = await response.json();
+          showMessage(error.error || 'Failed to delete booking', 'error');
+        }
+      } catch (error) {
+        console.error('Error deleting:', error);
+        showMessage('Error deleting booking', 'error');
+      }
+    }
+
+    // Open review modal
+    function openReview(requestId) {
+      currentRequestId = requestId;
+      initStarRatings();
+      document.getElementById('reviewModal').classList.add('show');
+    }
+
+    // Initialize star rating system
+    function initStarRatings() {
+      const categories = ['mainStarRating', 'qualityStars', 'responseStars', 'technicianStars', 'pricingStars'];
+      
+      categories.forEach(category => {
+        const container = document.getElementById(category);
+        container.innerHTML = '';
+        for (let i = 1; i <= 5; i++) {
+          const star = document.createElement('span');
+          star.className = 'star';
+          star.textContent = '★';
+          star.onclick = () => setRating(category, i);
+          container.appendChild(star);
+        }
+      });
+    }
+
+    // Set rating
+    function setRating(category, value) {
+      const valueField = document.getElementById(category.replace('Stars', 'Value').replace('Star', '') + 'Value').id;
+      document.getElementById(valueField).value = value;
+
+      const container = document.getElementById(category);
+      const stars = container.querySelectorAll('.star');
+      stars.forEach((star, index) => {
+        if (index < value) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    // Submit review
+    async function submitReview() {
+      const rating = document.getElementById('ratingValue').value;
+      const title = document.getElementById('reviewTitle').value;
+      const comment = document.getElementById('reviewComment').value;
+      const quality = document.getElementById('qualityValue').value;
+      const response = document.getElementById('responseValue').value;
+      const technician = document.getElementById('technicianValue').value;
+      const pricing = document.getElementById('pricingValue').value;
+
+      if (!rating || !title || !comment) {
+        showMessage('Please fill in all required fields', 'error');
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/dashboard/request/${currentRequestId}/review`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ rating, title, comment, quality, response, technician, pricing })
+        });
+
+        if (res.ok) {
+          showMessage('✅ Review submitted successfully', 'success');
+          closeModal('reviewModal');
+          loadBookings();
+        } else {
+          const error = await res.json();
+          showMessage(error.error || 'Failed to submit review', 'error');
+        }
+      } catch (error) {
+        console.error('Error submitting review:', error);
+        showMessage('Error submitting review', 'error');
+      }
+    }
+
+    // Close modal
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('show');
+    }
+
+    // Load initial data
+    loadBookings();
+    loadProfile();
+  </script>
+</body>
+</html>
