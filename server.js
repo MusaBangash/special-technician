@@ -6,6 +6,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const path = require('path');
 const admin = require('firebase-admin');
+const i18next = require('./i18n');
 
 const app = express();
 
@@ -56,6 +57,17 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 day
 }));
 
+// i18next middleware
+app.use((req, res, next) => {
+  const lang = req.query.lang || req.session.lang || 'en';
+  req.session.lang = lang;
+  i18next.changeLanguage(lang);
+  res.locals.t = i18next.t;
+  res.locals.lang = lang;
+  res.locals.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  next();
+});
+
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -69,6 +81,15 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/special-t
   useUnifiedTopology: true
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
+
+// Language switch route
+app.get('/switch-language/:lang', (req, res) => {
+  const lang = req.params.lang;
+  if (['en', 'ar'].includes(lang)) {
+    req.session.lang = lang;
+  }
+  res.redirect(req.header('Referer') || '/');
+});
 
 // Routes
 app.get('/', (req, res) => {

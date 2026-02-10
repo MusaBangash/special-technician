@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "login": "Login"
+  },
+  "hero": {
+    "title": "AC Maintenance",
+    "titleHighlight": "Done Right.",
+    "description": "Professional maintenance, repair & installation of air conditioning, cooling, ventilation and heating systems across Jazan and the region — with transparent pricing and a real guarantee.",
+    "bookService": "Book Service",
+    "viewServices": "View Services"
+  },
+  "services": {
+    "tag": "Services & Pricing",
+    "title": "Everything you need, in one place",
+    "description": "Clear, upfront pricing — no hidden fees, just quality work you can count on.",
+    "categories": {
+      "cleaning": "Cleaning",
+      "repair": "Repair",
+      "maintenance": "Maintenance",
+      "installation": "Installation",
+      "inspection": "Inspection",
+      "plumbing": "Plumbing",
+      "electrical": "Electrical"
+    }
+  },
+  "why": {
+    "tag": "Why Us?",
+    "title": "The service you deserve",
+    "items": {
+      "quality": {
+        "title": "Guaranteed Quality",
+        "description": "Every repair comes with a guarantee — if you're not satisfied, you don't pay."
+      },
+      "fast": {
+        "title": "Fast Response",
+        "description": "We're at your door within hours — no long waits, no runaround."
+      },
+      "certified": {
+        "title": "Certified Technicians",
+        "description": "A trained and certified team specialising in all HVAC systems."
+      },
+      "pricing": {
+        "title": "Transparent Pricing",
+        "description": "No surprises — you'll know the exact cost before any work begins."
+      }
+    },
+    "stats": {
+      "clients": "Happy Clients",
+      "cities": "Cities Served",
+      "response": "Hr Response",
+      "satisfaction": "Satisfaction"
+    }
+  },
+  "areas": {
+    "tag": "Service Areas",
+    "title": "Where we serve",
+    "description": "Based in Jazan, we proudly serve the entire region with reliable HVAC services.",
+    "mainHub": "Main Hub",
+    "coveredCities": "Covered Cities",
+    "delivery": "h delivery"
+  },
+  "contact": {
+    "title": "Ready to get started?",
+    "description": "Reach out via WhatsApp and book your maintenance appointment in minutes.",
+    "whatsapp": "WhatsApp",
+    "call": "Call Us"
+  },
+  "auth": {
+    "title": "Login / Sign Up",
+    "phone": "Phone Number (e.g. +966501234567)",
+    "sendOTP": "Send OTP",
+    "otp": "Enter OTP",
+    "name": "Full Name",
+    "email": "Email (optional)",
+    "verify": "Verify & Login"
+  },
+  "booking": {
+    "title": "Book Service",
+    "selectService": "Select Service",
+    "price": "💰 Price:",
+    "selectCity": "Select City",
+    "additionalDetails": "Additional details",
+    "bookNow": "Book Now",
+    "success": "Service booked successfully! 🎉",
+    "error": "Booking failed:"
+  },
+  "footer": {
+    "rights": "© 2026 Special Technician – All rights reserved"
+  }
+}

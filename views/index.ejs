@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="<%= lang %>" dir="<%= dir %>">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Special Technician – Professional HVAC maintenance, repair &amp; installation in Jazan, Saudi Arabia"/>
-<title>Special Technician – الفني المتميز</title>
+<title><%= t('hero.title') %> – الفني المتميز</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -560,15 +560,21 @@ button { font-family:inherit; border:none; cursor:pointer; }
         </div>
       </a>
       <ul class="nav__links" id="navLinks">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#why">About Us</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#services"><%= t('nav.services') %></a></li>
+        <li><a href="#why"><%= t('nav.about') %></a></li>
+        <li><a href="#contact"><%= t('nav.contact') %></a></li>
         <% if (user) { %>
-          <li><a href="/dashboard">Dashboard</a></li>
-          <li><a href="#" onclick="logout()">Logout</a></li>
+          <li><a href="/dashboard"><%= t('nav.dashboard') %></a></li>
+          <li><a href="#" onclick="logout()"><%= t('nav.logout') %></a></li>
         <% } else { %>
-          <li><a href="#" onclick="showAuthModal()">Login</a></li>
+          <li><a href="#" onclick="showAuthModal()"><%= t('nav.login') %></a></li>
         <% } %>
+        <!-- Language Switcher -->
+        <li style="margin-left: 12px; display: flex; gap: 8px;">
+          <a href="/switch-language/en" style="<%= lang === 'en' ? 'font-weight: 700; color: var(--clr-accent);' : '' %>">EN</a>
+          <span style="color: var(--clr-text-lo);">|</span>
+          <a href="/switch-language/ar" style="<%= lang === 'ar' ? 'font-weight: 700; color: var(--clr-accent);' : '' %>">العربية</a>
+        </li>
       </ul>
       <button class="nav__burger" id="burger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -583,19 +589,19 @@ button { font-family:inherit; border:none; cursor:pointer; }
     <div class="hero__content">
       <div class="hero__badge"><span class="tag">HVAC Specialists</span></div>
       <h1 class="hero__title">
-        AC Maintenance<br/>
-        <span class="highlight">Done Right.</span>
+        <%= t('hero.title') %><br/>
+        <span class="highlight"><%= t('hero.titleHighlight') %></span>
       </h1>
       <p class="hero__desc">
-        Professional maintenance, repair &amp; installation of air conditioning, cooling, ventilation and heating systems across Jazan and the region — with transparent pricing and a real guarantee.
+        <%= t('hero.description') %>
       </p>
       <div class="hero__actions">
         <% if (user) { %>
-          <a href="#services" class="btn btn--accent">Book Service</a>
+          <a href="#services" class="btn btn--accent"><%= t('hero.bookService') %></a>
         <% } else { %>
-          <a href="#" onclick="showAuthModal()" class="btn btn--accent">Book Service</a>
+          <a href="#" onclick="showAuthModal()" class="btn btn--accent"><%= t('hero.bookService') %></a>
         <% } %>
-        <a href="#services" class="btn btn--outline">View Services</a>
+        <a href="#services" class="btn btn--outline"><%= t('hero.viewServices') %></a>
       </div>
     </div>
     <div class="hero__visual">
@@ -622,9 +628,9 @@ button { font-family:inherit; border:none; cursor:pointer; }
 <section class="services" id="services">
   <div class="container">
     <div class="services__head">
-      <span class="tag">Services &amp; Pricing</span>
-      <h2>Everything you need, in one place</h2>
-      <p>Clear, upfront pricing — no hidden fees, just quality work you can count on.</p>
+      <span class="tag"><%= t('services.tag') %></span>
+      <h2><%= t('services.title') %></h2>
+      <p><%= t('services.description') %></p>
     </div>
 
     <div class="services__tabs" id="servicesTabs">
@@ -642,16 +648,16 @@ button { font-family:inherit; border:none; cursor:pointer; }
   <div class="container">
     <div class="why__inner">
       <div class="why__content">
-        <span class="tag">Why Us?</span>
-        <h2>The service you deserve</h2>
+        <span class="tag"><%= t('why.tag') %></span>
+        <h2><%= t('why.title') %></h2>
         <div class="why__list">
           <div class="why__item">
             <div class="why__item-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="#d4a017" stroke-width="2.2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
-              <h4>Guaranteed Quality</h4>
-              <p>Every repair comes with a guarantee — if you're not satisfied, you don't pay.</p>
+              <h4><%= t('why.items.quality.title') %></h4>
+              <p><%= t('why.items.quality.description') %></p>
             </div>
           </div>
           <div class="why__item">
@@ -659,8 +665,8 @@ button { font-family:inherit; border:none; cursor:pointer; }
               <svg viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
-              <h4>Fast Response</h4>
-              <p>We're at your door within hours — no long waits, no runaround.</p>
+              <h4><%= t('why.items.fast.title') %></h4>
+              <p><%= t('why.items.fast.description') %></p>
             </div>
           </div>
           <div class="why__item">
@@ -668,8 +674,8 @@ button { font-family:inherit; border:none; cursor:pointer; }
               <svg viewBox="0 0 24 24" fill="none" stroke="#c62828" stroke-width="2.2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
             </div>
             <div>
-              <h4>Certified Technicians</h4>
-              <p>A trained and certified team specialising in all HVAC systems.</p>
+              <h4><%= t('why.items.certified.title') %></h4>
+              <p><%= t('why.items.certified.description') %></p>
             </div>
           </div>
           <div class="why__item">
@@ -677,8 +683,8 @@ button { font-family:inherit; border:none; cursor:pointer; }
               <svg viewBox="0 0 24 24" fill="none" stroke="#d4a017" stroke-width="2.2" stroke-linecap="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             </div>
             <div>
-              <h4>Transparent Pricing</h4>
-              <p>No surprises — you'll know the exact cost before any work begins.</p>
+              <h4><%= t('why.items.pricing.title') %></h4>
+              <p><%= t('why.items.pricing.description') %></p>
             </div>
           </div>
         </div>
@@ -687,19 +693,19 @@ button { font-family:inherit; border:none; cursor:pointer; }
         <div class="why__stats">
           <div class="why__stat">
             <div class="num">500+</div>
-            <div class="label">Happy Clients</div>
+            <div class="label"><%= t('why.stats.clients') %></div>
           </div>
           <div class="why__stat">
             <div class="num">4</div>
-            <div class="label">Cities Served</div>
+            <div class="label"><%= t('why.stats.cities') %></div>
           </div>
           <div class="why__stat">
             <div class="num">24</div>
-            <div class="label">Hr Response</div>
+            <div class="label"><%= t('why.stats.response') %></div>
           </div>
           <div class="why__stat">
             <div class="num">98%</div>
-            <div class="label">Satisfaction</div>
+            <div class="label"><%= t('why.stats.satisfaction') %></div>
           </div>
         </div>
       </div>
@@ -712,9 +718,9 @@ button { font-family:inherit; border:none; cursor:pointer; }
   <div class="container">
     <div class="areas__inner">
       <div class="areas__content">
-        <span class="tag">Service Areas</span>
-        <h2>Where we serve</h2>
-        <p>Based in Jazan, we proudly serve the entire region with reliable HVAC services.</p>
+        <span class="tag"><%= t('areas.tag') %></span>
+        <h2><%= t('areas.title') %></h2>
+        <p><%= t('areas.description') %></p>
       </div>
       <div class="areas__map">
         <div class="areas__main">
@@ -723,12 +729,12 @@ button { font-family:inherit; border:none; cursor:pointer; }
             <div class="areas__details">
               <h3>Saudi Arabia - Jazan</h3>
               <p>السعودية - جازان</p>
-              <span class="areas__badge">Main Hub</span>
+              <span class="areas__badge"><%= t('areas.mainHub') %></span>
             </div>
           </div>
         </div>
         <div class="areas__covered">
-          <h4>Covered Cities</h4>
+          <h4><%= t('areas.coveredCities') %></h4>
           <div class="areas__grid" id="service-areas-grid">
             <p style="color: #5a5a5a;">Loading service areas...</p>
           </div>
@@ -756,12 +762,12 @@ button { font-family:inherit; border:none; cursor:pointer; }
         <span>الفني المتميز – HVAC Maintenance</span>
       </div>
       <ul class="footer__links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#why">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#services"><%= t('nav.services') %></a></li>
+        <li><a href="#why"><%= t('nav.about') %></a></li>
+        <li><a href="#contact"><%= t('nav.contact') %></a></li>
       </ul>
     </div>
-    <p class="footer__copy">© 2026 Special Technician – All rights reserved</p>
+    <p class="footer__copy"><%= t('footer.rights') %></p>
   </div>
 </footer>
 
@@ -773,15 +779,15 @@ button { font-family:inherit; border:none; cursor:pointer; }
 <!-- AUTH MODAL -->
 <div class="auth-modal" id="authModal">
   <div class="auth-modal__content">
-    <h3>Login / Sign Up</h3>
+    <h3><%= t('auth.title') %></h3>
     <form id="authForm">
-      <input type="tel" id="phone" placeholder="Phone Number (e.g. +966501234567)" required>
+      <input type="tel" id="phone" placeholder="<%= t('auth.phone') %>" required>
       <div id="auth-container" style="display: none;"></div>
-      <button type="button" class="btn btn--accent" onclick="sendOTP()">Send OTP</button>
-      <input type="text" id="otp" placeholder="Enter OTP" style="display:none;">
-      <input type="text" id="name" placeholder="Full Name" style="display:none;">
-      <input type="email" id="email" placeholder="Email (optional)" style="display:none;">
-      <button type="submit" class="btn btn--accent" style="display:none;">Verify & Login</button>
+      <button type="button" class="btn btn--accent" onclick="sendOTP()"><%= t('auth.sendOTP') %></button>
+      <input type="text" id="otp" placeholder="<%= t('auth.otp') %>" style="display:none;">
+      <input type="text" id="name" placeholder="<%= t('auth.name') %>" style="display:none;">
+      <input type="email" id="email" placeholder="<%= t('auth.email') %>" style="display:none;">
+      <button type="submit" class="btn btn--accent" style="display:none;"><%= t('auth.verify') %></button>
     </form>
   </div>
 </div>
@@ -789,18 +795,18 @@ button { font-family:inherit; border:none; cursor:pointer; }
 <!-- BOOKING MODAL -->
 <div class="auth-modal" id="bookingModal">
   <div class="auth-modal__content">
-    <h3>Book Service</h3>
+    <h3><%= t('booking.title') %></h3>
     <form id="bookingForm">
       <select id="serviceSelect" required>
-        <option value="">Loading services...</option>
+        <option value=""><%= t('booking.selectService') %></option>
       </select>
       <div id="selectedPrice" style="font-size:.85rem; color: var(--clr-accent2); font-weight:600; margin-top:8px; text-align:right;"></div>
       <input type="datetime-local" id="scheduledDate" required>
       <select id="location" required>
-        <option value="">Loading cities...</option>
+        <option value=""><%= t('booking.selectCity') %></option>
       </select>
-      <textarea id="description" placeholder="Additional details"></textarea>
-      <button type="submit" class="btn btn--accent">Book Now</button>
+      <textarea id="description" placeholder="<%= t('booking.additionalDetails') %>"></textarea>
+      <button type="submit" class="btn btn--accent"><%= t('booking.bookNow') %></button>
     </form>
   </div>
 </div>
